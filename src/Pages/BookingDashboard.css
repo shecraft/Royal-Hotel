@@ -1,0 +1,123 @@
+.booking-container {
+padding: 100px 20px 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.booking-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Use flex layout with gap */
+.booking-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 20px;
+}
+
+.booking-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-left: 5px solid #2ecc71;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s;
+}
+
+.booking-card:hover {
+  transform: scale(1.01);
+}
+
+.booking-card p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cancel-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.cancel-btn:hover {
+  background-color: #c0392b;
+}
+
+.payment-btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.payment-btn:hover {
+  background-color: #27ae60;
+}
+
+.status-cancelled {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.status-confirmed {
+  color: #2ecc71;
+  font-weight: bold;
+
+
+.swal2-small-popup {
+  font-size: 14px !important;
+}
+
+.swal2-small-title {
+  font-size: 16px !important;
+}
+
+.swal2-small-text {
+  font-size: 12px !important;
+}
+
+.swal2-small-btn {
+  font-size: 13px !important;
+  padding: 6px 10px !important;
+}
+
+  .swal2-icon {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 20px !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-width: 3px !important;
+}
+
+}
+
+@media (max-width: 600px) {
+  .booking-actions {
+    flex-direction: column;
+  }
+
+  .booking-card {
+    padding: 15px;
+  }
+}

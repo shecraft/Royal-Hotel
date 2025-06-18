@@ -4,8 +4,6 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import toast from 'react-hot-toast'
 
-const baseUrl = import.meta.env.VITE_BASE_URL
-
 const RegisterSchema = yup.object({
   email: yup.string().email("Enter a valid email address").required("Email is required"),
   name: yup.string().required("Your name is complusory").min(3, "Name should be at least 3 characters"),
@@ -29,7 +27,7 @@ const Register = () => {
         },
         body: JSON.stringify(data)
       })
-      
+
       const result = await res.json()
       const firstname = data.name.split(" ")[0]
 
@@ -49,42 +47,42 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(submitForm)}>
+    <div className="form-container">
+      <form onSubmit={handleSubmit(submitForm)} className="register-form">
         <fieldset>
-          <legend>Register</legend>
+          <legend className="form-legend">📝 Register Account</legend>
 
-          <div>
-            <label htmlFor="name">Full Name:</label><br />
-            <input type="text" id="name" {...register("name")} /><br /><br />
-            <p style={{ color: "red", fontSize:"12px",textAlign:"left", marginBottom:"12px" }}>{errors.name?.message}</p>
+          <div className="form-group">
+            <label htmlFor="name">Full Name:</label>
+            <div className="input-wrapper">
+              <i className="fas fa-user"></i>
+              <input type="text" id="name" {...register("name")} />
+            </div>
+            <p className="error">{errors.name?.message}</p>
           </div>
 
-          <div>
-            <label htmlFor="email">Email:</label><br />
-            <input type="email" id="email" {...register("email")} /><br /><br />
-            <p style={{ color: "red", fontSize:"12px",textAlign:"left", marginBottom:"12px" }}>{errors.email?.message}</p>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <div className="input-wrapper">
+              <i className="fas fa-envelope"></i>
+              <input type="email" id="email" {...register("email")} />
+            </div>
+            <p className="error">{errors.email?.message}</p>
           </div>
 
-          <div>
-            <label htmlFor="password">Password:</label><br />
-            <input type="password" id="password" {...register("password")} /><br /><br />
-            <p style={{ color: "red", fontSize:"12px",textAlign:"left", marginBottom:"12px" }}>{errors.password?.message}</p>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <div className="input-wrapper">
+              <i className="fas fa-lock"></i>
+              <input type="password" id="password" {...register("password")} />
+            </div>
+            <p className="error">{errors.password?.message}</p>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            style={{
-              backgroundColor: loading ? "#95a5a6" : "#3498db",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              width: "100%",
-              fontWeight: "bold",
-              borderRadius: "5px",
-              cursor: loading ? "not-allowed" : "pointer"
-            }}
+            className={`submit-btn ${loading ? 'disabled' : ''}`}
           >
             {loading ? "Registering..." : "Register"}
           </button>

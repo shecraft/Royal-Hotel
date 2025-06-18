@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import BookingDashboard from './Pages/BookingDashboard'
 import BookRoom from './Pages/BookRoom'
 import PaymentPage from './Pages/PaymentPage'
-import NavBar from './Components/NavBar'
+import Header from './Components/Header'
 // import { Toaster } from "sooner";
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <Header />
          <Routes>
-            <Route path='/' element={<NavBar/>}/>
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path='/' element={<Header/>}/> */}
+            <Route path="/" element={<Dashboard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/log" element={<Login />} />
             <Route path ="/verify/:token" element={<Verify />}/>

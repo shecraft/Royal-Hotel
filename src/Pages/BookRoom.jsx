@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import "./booking.css"; // 🔥 Make sure to import the CSS file
 
 const BookingForm = () => {
   const {
@@ -27,7 +28,7 @@ const BookingForm = () => {
 
       if (res.ok) {
         toast.success(result.message || "Booking successful");
-        reset(); // clear form
+        reset();
       } else {
         toast.error(result.message || "Booking failed");
       }
@@ -38,24 +39,15 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-2xl bg-white p-8 rounded-2xl shadow-lg border"
-      >
-        <fieldset className="border border-gray-300 rounded-xl p-6">
-          <legend className="text-2xl font-bold text-blue-700 px-3">Book a Room</legend>
+    <div className="booking-container">
+      <form onSubmit={handleSubmit(onSubmit)} className="booking-form">
+        <fieldset className="booking-fieldset">
+          <legend className="booking-legend">Book a Room</legend>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Room Type */}
+          <div className="booking-grid">
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700">
-                Room Type
-              </label>
-              <select
-                {...register("roomType", { required: true })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
+              <label className="booking-label">Room Type</label>
+              <select {...register("roomType", { required: true })} className="booking-input">
                 <option value="">Select Room</option>
                 <option value="single">single</option>
                 <option value="double">double</option>
@@ -63,51 +55,24 @@ const BookingForm = () => {
               </select>
             </div>
 
-            {/* Number of Guests */}
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700">
-                Number of Guests
-              </label>
-              <input
-                type="number"
-                min="1"
-                {...register("numberOfGuests", { required: true })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <label className="booking-label">Number of Guests</label>
+              <input type="number" min="1" {...register("numberOfGuests", { required: true })} className="booking-input" />
             </div>
 
-            {/* Check-In */}
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700">
-                Check-In Date
-              </label>
-              <input
-                type="date"
-                {...register("checkIn", { required: true })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <label className="booking-label">Check-In Date</label>
+              <input type="date" {...register("checkIn", { required: true })} className="booking-input" />
             </div>
 
-            {/* Check-Out */}
             <div>
-              <label className="block text-sm font-semibold mb-1 text-gray-700">
-                Check-Out Date
-              </label>
-              <input
-                type="date"
-                {...register("checkOut", { required: true })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <label className="booking-label">Check-Out Date</label>
+              <input type="date" {...register("checkOut", { required: true })} className="booking-input" />
             </div>
           </div>
 
-          {/* Submit */}
-          <div className="mt-8">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition duration-300"
-            >
+          <div className="booking-button-wrap">
+            <button type="submit" disabled={isSubmitting} className="booking-button">
               {isSubmitting ? "Booking..." : "Book Now"}
             </button>
           </div>

@@ -17,7 +17,7 @@ const PaymentPage = () => {
     formData.append("name", data.name);
     formData.append("bankName", data.bankName);
     formData.append("amount", data.amount);
-    formData.append("bookingId", bookingId); // 🟢 Use from URL
+    formData.append("bookingId", bookingId); 
     formData.append("screenshot", data.screenshot[0]);
 
     try {
@@ -40,27 +40,31 @@ const PaymentPage = () => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-      <h2>Manual Payment</h2>
+return (
+  <div className="manual-payment-wrapper">
+    <form
+      className="manual-payment-form"
+      onSubmit={handleSubmit(onSubmit)}
+      encType="multipart/form-data"
+    >
+      <h2>🧾 Manual Payment</h2>
 
       <label>Full Name:</label>
       <input {...register("name", { required: "Name is required" })} />
-      <p>{errors.name?.message}</p>
+      <p className="error">{errors.name?.message}</p>
 
       <label>Bank Name:</label>
       <input {...register("bankName", { required: "Bank name is required" })} />
-      <p>{errors.bankName?.message}</p>
+      <p className="error">{errors.bankName?.message}</p>
 
-      <label>Amount:</label>
+      <label>Amount (₦):</label>
       <input
         type="number"
         {...register("amount", { required: "Amount is required" })}
       />
-      <p>{errors.amount?.message}</p>
+      <p className="error">{errors.amount?.message}</p>
 
-      {/* Booking ID shown only for info, not input */}
-      <p><strong>Booking ID:</strong> {bookingId}</p>
+      <p className="booking-id"><strong>Booking ID:</strong> {bookingId}</p>
 
       <label>Upload Screenshot:</label>
       <input
@@ -68,13 +72,16 @@ const PaymentPage = () => {
         accept="image/*"
         {...register("screenshot", { required: "Screenshot is required" })}
       />
-      <p>{errors.screenshot?.message}</p>
+      <p className="error">{errors.screenshot?.message}</p>
 
       <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Submitting..." : "Submit Payment"}
+        {isSubmitting ? "⏳ Submitting..." : "💳 Submit Payment"}
       </button>
     </form>
-  );
+  </div>
+);
+
+
 };
 
 export default PaymentPage;
