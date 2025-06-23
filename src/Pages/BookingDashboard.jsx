@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
 import Swal from 'sweetalert2';
-import './BookingDashboard.css'; // Import the styles
+import './BookingDashboard.css'; 
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 const BookingDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -90,44 +92,51 @@ const BookingDashboard = () => {
   };
 
  return (
-  <div className="booking-container">
-    {/* <h2>My Bookings</h2> */}
+    <div className="booking-container">
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <ClipLoader color="#732d91" size={50} />
+        </div>
+      ) : bookings.length === 0 ? (
+        <p>You have no bookings yet.</p>
+      ) : (
+        <div className="booking-list mt-20">
+          {bookings
+            .filter((booking) => booking.status !== "cancelled")
+            .map((booking) => (
+              <div key={booking._id} className="booking-card">
+                <p><strong>Room:</strong> {booking.roomType}</p>
+                <p><strong>Guests:</strong> {booking.numberOfGuests}</p>
+                <p><strong>Check-In:</strong> {new Date(booking.checkIn).toLocaleDateString()}</p>
+                <p><strong>Check-Out:</strong> {new Date(booking.checkOut).toLocaleDateString()}</p>
+                <p>
+                  <strong>Status:</strong>{" "}
+                  <span
+                    className={
+                      booking.status === "cancelled"
+                        ? "status-cancelled"
+                        : booking.status === "confirmed"
+                        ? "status-confirmed"
+                        : "status-pending"
+                    }
+                  >
+                    {booking.status}
+                  </span>
+                </p>
 
-    {loading ? (
-      <p>Loading...</p>
-    ) : bookings.length === 0 ? (
-      <p>You have no bookings yet.</p>
-    ) : (
-      <div className="booking-list">
-        {bookings.map((booking) => (
-          <div key={booking._id} className="booking-card">
-            <p><strong>Room:</strong> {booking.roomType}</p>
-            <p><strong>Guests:</strong> {booking.numberOfGuests}</p>
-            <p><strong>Check-In:</strong> {new Date(booking.checkIn).toLocaleDateString()}</p>
-            <p><strong>Check-Out:</strong> {new Date(booking.checkOut).toLocaleDateString()}</p>
-            <p>
-              <strong>Status:</strong>{" "}
-              <span className={booking.status === "cancelled" ? "status-cancelled" : "status-confirmed"}>
-                {booking.status}
-              </span>
-            </p>
-
-            {booking.status !== "cancelled" && (
-              <div className="booking-actions">
-                <button className="cancel-btn" onClick={() => handleCancel(booking._id)}>
-                  Cancel Booking
-                </button>
-                <a className="payment-btn" href={`/payment/${booking._id}`}>
-                  Make Payment
-                </a>
+                {booking.status !== "cancelled" && (
+                  <div className="booking-actions">
+                    <button className="cancel-btn" onClick={() => handleCancel(booking._id)}>
+                      Cancel Booking
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-);
+            ))}
+        </div>
+      )}
+    </div>
+  );
 
 };
 

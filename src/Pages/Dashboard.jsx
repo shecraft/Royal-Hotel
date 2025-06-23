@@ -115,11 +115,6 @@ const Dashboard = () => {
         <p>Email: contact@royalhotel.com</p>
         <p>Phone: +234 800 123 4567</p>
      </div>
-
-
-      <footer className="footer">
-        <p>&copy; {new Date().getFullYear()} Royal Hotel. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

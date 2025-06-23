@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import "./booking.css"; // 🔥 Make sure to import the CSS file
+import { useNavigate } from "react-router-dom";
+import "./booking.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const BookingForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -28,6 +31,10 @@ const BookingForm = () => {
 
       if (res.ok) {
         toast.success(result.message || "Booking successful");
+        const bookingId = result.booking?._id;
+        if (bookingId) {
+          navigate(`/payment/${bookingId}`);
+        }
         reset();
       } else {
         toast.error(result.message || "Booking failed");
@@ -73,7 +80,7 @@ const BookingForm = () => {
 
           <div className="booking-button-wrap">
             <button type="submit" disabled={isSubmitting} className="booking-button">
-              {isSubmitting ? "Booking..." : "Book Now"}
+            {isSubmitting ? <ClipLoader size={20} color="#fff" /> : "Book Now"}
             </button>
           </div>
         </fieldset>

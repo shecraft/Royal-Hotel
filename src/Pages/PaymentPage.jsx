@@ -1,9 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React from "react";
 import { useForm } from "react-hook-form";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PaymentPage = () => {
   const { bookingId } = useParams();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -29,8 +31,8 @@ const PaymentPage = () => {
       const result = await res.json();
 
       if (res.ok) {
-        alert("✅ Payment submitted successfully!");
         reset();
+        navigate("/booking-success");
       } else {
         alert(result.message || "❌ Something went wrong");
       }
@@ -40,48 +42,46 @@ const PaymentPage = () => {
     }
   };
 
-return (
-  <div className="manual-payment-wrapper">
-    <form
-      className="manual-payment-form"
-      onSubmit={handleSubmit(onSubmit)}
-      encType="multipart/form-data"
-    >
-      <h2>🧾 Manual Payment</h2>
+  return (
+    <div className="manual-payment-wrapper">
+      <form
+        className="manual-payment-form"
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
+        <h2>🧾 Manual Payment</h2>
 
-      <label>Full Name:</label>
-      <input {...register("name", { required: "Name is required" })} />
-      <p className="error">{errors.name?.message}</p>
+        <label>Full Name:</label>
+        <input {...register("name", { required: "Name is required" })} />
+        <p className="error">{errors.name?.message}</p>
 
-      <label>Bank Name:</label>
-      <input {...register("bankName", { required: "Bank name is required" })} />
-      <p className="error">{errors.bankName?.message}</p>
+        <label>Bank Name:</label>
+        <input {...register("bankName", { required: "Bank name is required" })} />
+        <p className="error">{errors.bankName?.message}</p>
 
-      <label>Amount (₦):</label>
-      <input
-        type="number"
-        {...register("amount", { required: "Amount is required" })}
-      />
-      <p className="error">{errors.amount?.message}</p>
+        <label>Amount (₦):</label>
+        <input
+          type="number"
+          {...register("amount", { required: "Amount is required" })}
+        />
+        <p className="error">{errors.amount?.message}</p>
 
-      <p className="booking-id"><strong>Booking ID:</strong> {bookingId}</p>
+        <p className="booking-id"><strong>Booking ID:</strong> {bookingId}</p>
 
-      <label>Upload Screenshot:</label>
-      <input
-        type="file"
-        accept="image/*"
-        {...register("screenshot", { required: "Screenshot is required" })}
-      />
-      <p className="error">{errors.screenshot?.message}</p>
+        <label>Upload Screenshot:</label>
+        <input
+          type="file"
+          accept="image/*"
+          {...register("screenshot", { required: "Screenshot is required" })}
+        />
+        <p className="error">{errors.screenshot?.message}</p>
 
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "⏳ Submitting..." : "💳 Submit Payment"}
-      </button>
-    </form>
-  </div>
-);
-
-
+        <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? <ClipLoader size={20} color="#fff" /> : "💳 Submit Payment"}
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default PaymentPage;

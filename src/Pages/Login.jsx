@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./login.css"; // 🔁 This is where the CSS is imported
+import "./login.css";
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -59,7 +59,7 @@ const Login = () => {
             type="email"
             {...register("email", { required: "Email is required" })}
           />
-          {errors.email && <p className="error-text">{errors.email.message}</p>}
+          {errors.email && <p className="error-text ">{errors.email.message}</p>}
 
           <label>Password:</label>
           <div className="password-field">
