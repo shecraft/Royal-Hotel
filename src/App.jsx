@@ -25,7 +25,6 @@ function App() {
       <BrowserRouter>
       <Header />
          <Routes>
-            {/* <Route path='/' element={<Header/>}/> */}
             <Route path="/" element={<Dashboard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/log" element={<Login />} />

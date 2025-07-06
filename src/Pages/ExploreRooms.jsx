@@ -10,12 +10,12 @@ const rooms = [
   {
     name: "Double Room",
     description: "Ideal for couples. Comes with 2 beds, air conditioning, and complimentary breakfast.",
-    image: "src/assets/double.jpg",
+    image: "src/assets/dou.jpg",
   },
   {
     name: "Executive Suite",
     description: "Luxury experience with a king-size bed, balcony view, minibar, and workspace.",
-    image: "src/assets/excutive.jpg",
+    image: "src/assets/ex.jpg",
   },
   {
     name: "Family Room",
@@ -35,7 +35,7 @@ const rooms = [
   {
     name: "Ocean View Room",
     description: "Wake up to ocean views. Includes a balcony and modern furnishings.",
-    image: "src/assets/ocean.jpg",
+    image: "src/assets/view.webp",
   },
   {
     name: "Deluxe King Room",

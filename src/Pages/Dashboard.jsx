@@ -89,12 +89,14 @@ const Dashboard = () => {
       <section className="gallery">
         <h2>Gallery :</h2>
         <div className="gallery-grid">
-          <img src="src/assets/hotelRoom.jpg" alt="Room 1" />
-          <img src="src/assets/hotelRes.jpg" alt="Restaurant" />
-          <img src="src/assets/hotelPool.jpg" alt="Pool" />
-          <img src="src/assets/hotelSpot.jpg" alt="Spot" />
-          <img src="src/assets/hotelGym.jpg" alt="Gym" />
-          <img src="src/assets/hotelLobby.jpg" alt="Lobby" />
+          <img src="src/assets/enjoy.webp" alt="Room 1" />
+          <img src="src/assets/res.webp" alt="Restaurant" />
+          <img src="src/assets/pool.webp" alt="Pool" />
+          <img src="src/assets/business.avif" alt="Spot" />
+          <img src="src/assets/view.webp" alt="Gym" />
+          <img src="src/assets/ex.jpg" alt="Lobby" />
+          <img src="src/assets/room.jpg" alt="Lobby" />
+          <img src="src/assets/couple.jpg" alt="Lobby" />
           
         </div>
       </section>

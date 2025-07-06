@@ -58,11 +58,11 @@ const Contact = () => {
         <div className="text-center text-sm text-gray-500 mt-8">
           Or email us directly at{" "}
           <a
-            href="mailto:info@stayease.com"
+            href="mailto:faizahojo40@gmail.com"
             className="underline"
             style={{ color: "#732d91" }}
           >
-            info@stayease.com
+            faizahojo40.gmail.com
           </a>
         </div>
       </div>
