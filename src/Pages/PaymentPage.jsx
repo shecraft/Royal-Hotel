@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import React from "react";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
+import toast from 'react-hot-toast';
 
 const PaymentPage = () => {
   const { bookingId } = useParams();
@@ -32,7 +33,8 @@ const PaymentPage = () => {
 
       if (res.ok) {
         reset();
-        navigate("/booking-success");
+        navigate("/");
+        toast.success("Payment successfully made")
       } else {
         alert(result.message || "❌ Something went wrong");
       }

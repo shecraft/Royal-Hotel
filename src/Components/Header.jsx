@@ -8,7 +8,6 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  // Custom handler for protected routes
   const handleProtectedRoute = (e, path) => {
     e.preventDefault();
 

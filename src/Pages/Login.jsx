@@ -11,7 +11,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top on mount
+    window.scrollTo(0, 0); 
   }, []);
 
   const onSubmit = async (data) => {
@@ -71,15 +71,11 @@ const Login = () => {
               })}
             />
             <span onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? <i class='bx  bx-key'  ></i>   : <i class='bx  bx-lock'  ></i> }
             </span>
           </div>
           {errors.password && <p className="error-text">{errors.password.message}</p>}
 
-          <div className="checkbox-wrap">
-            <input type="checkbox" {...register("remember")} />
-            <label>Remind</label>
-          </div>
 
           <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}

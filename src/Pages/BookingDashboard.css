@@ -14,7 +14,7 @@ padding: 100px 20px 30px;
 /* Use flex layout with gap */
 .booking-list {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
   gap: 20px;
 }
 

@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 
 const BookingSuccess = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const bookingId = location.state?.bookingId;
+
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      navigate("/my-bookings");
-    }, 5000); 
+    if (bookingId) {
+      const timeout = setTimeout(() => {
+      navigate(`/payment/${bookingId}`);
+    }, 2000); 
 
-    return () => clearTimeout(timeout);
-  }, [navigate]);
+     return  ()=>clearTimeout(timeout)
+    }
+  
+
+
+  }, [navigate, bookingId]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f3e8fb] px-6">
@@ -19,10 +28,11 @@ const BookingSuccess = () => {
         <h2 className="text-2xl font-bold text-[#732d91]">Booking Confirmed!</h2>
         <p className="text-gray-600 mt-2">
           Thank you for booking with Royal Hotel. Your reservation has been received.
+          Check your email for the details.
         </p>
 
         <p className="text-sm text-gray-500 mt-4">
-          Redirecting to <strong>My Bookings</strong> in 5 seconds...
+          Redirecting to <strong>Payment</strong> in 2 seconds...
         </p>
 
         <Link

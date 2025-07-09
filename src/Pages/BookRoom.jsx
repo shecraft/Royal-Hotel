@@ -26,14 +26,13 @@ const BookingForm = () => {
         },
         body: JSON.stringify(data),
       });
-
       const result = await res.json();
 
       if (res.ok) {
         toast.success(result.message || "Booking successful");
         const bookingId = result.booking?._id;
         if (bookingId) {
-          navigate(`/payment/${bookingId}`);
+          navigate(`/booking-success`, { state: { bookingId }}); // it was here before         //  /payment/${bookingId}
         }
         reset();
       } else {

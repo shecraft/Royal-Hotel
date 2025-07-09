@@ -1,8 +1,23 @@
 import "./Dashboard.css";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const handleProtectedRoute = (e, path) => {
+    e.preventDefault();
+
+    if (!token) {
+      toast.error("You must have to register before accessing this page!");
+      navigate("/register");
+    } else {
+      navigate(path);
+    }
+    // setMobileMenuOpen(false);
+  };
 
   return (
     <div className="dashboard">
@@ -10,7 +25,8 @@ const Dashboard = () => {
         <div className="hero-content">
           <h1>Welcome to Royal Hotel</h1>
           <p>Experience comfort, luxury, and relaxation like never before.</p>
-          <button onClick={() => navigate("/book-room")}>Book a Room</button>
+          <Link className="button" to="/book-room" onClick={(e) => handleProtectedRoute(e, "/book-room")}>Book Now</Link>
+          {/* <button onClick={() => navigate("/book-room")}>Book a Room</button> */}
         </div>
       </header>
 
@@ -87,7 +103,7 @@ const Dashboard = () => {
       </section>
 
       <section className="gallery">
-        <h2>Gallery :</h2>
+        <h2>Gallery </h2>
         <div className="gallery-grid">
           <img src="src/assets/enjoy.webp" alt="Room 1" />
           <img src="src/assets/res.webp" alt="Restaurant" />
