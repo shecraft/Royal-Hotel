@@ -23,7 +23,7 @@ const Register = () => {
     console.log(apiUrl);
     
     try {
-      const res = await fetch(`${apiUrl}`, {
+      const res = await fetch(`${apiUrl}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
