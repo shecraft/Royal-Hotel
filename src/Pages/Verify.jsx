@@ -8,11 +8,11 @@ const Verify = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token) {
-      setStatus("Invalid verification link.");
-      setType("error");
-      return;
-    }
+    // if (!token) {
+    //   setStatus("Invalid verification link.");
+    //   setType("error");
+    //   return;
+    // }
 
     const verifyUser = async () => {
       try {
